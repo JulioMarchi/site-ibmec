@@ -1,0 +1,720 @@
+{
+  "metadata": {
+    "title": "Ibmec Campus – Gestão de Salas",
+    "lang": "pt-BR",
+    "viewport": "width=device-width, initial-scale=1.0"
+  },
+  "dependencies": {
+    "react": "https://unpkg.com/react@18/umd/react.production.min.js",
+    "reactDOM": "https://unpkg.com/react-dom@18/umd/react-dom.production.min.js",
+    "babel": "https://unpkg.com/@babel/standalone/babel.min.js",
+    "xlsx": "https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js",
+    "supabase": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js",
+    "fonts": "https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+  },
+  "supabase": {
+    "url": "https://wpeaijzxkrxdpojimwlv.supabase.co",
+    "anonKey": "sb_publishable_6aodcSDIihtHzXB__73Mcw_2n5q2dSZ"
+  },
+  "theme": {
+    "colors": {
+      "navy": "#002454",
+      "navyLight": "#003070",
+      "navyDark": "#001a3a",
+      "gold": "#f5ac00",
+      "goldLight": "#ffd24d",
+      "goldPale": "#fff8e6",
+      "white": "#ffffff",
+      "gray50": "#f8f9fb",
+      "gray100": "#eef0f5",
+      "gray200": "#dde1eb",
+      "gray400": "#9aa3b5",
+      "gray600": "#5c6478",
+      "gray800": "#2d3346",
+      "success": "#16a34a",
+      "danger": "#dc2626",
+      "warning": "#d97706",
+      "info": "#2563eb"
+    },
+    "fonts": {
+      "headings": "Sora, sans-serif",
+      "body": "IBM Plex Sans, sans-serif"
+    }
+  },
+  "data": {
+    "cursoMap": {
+      "ADMINISTRAÇÃO": "ADM",
+      "CIÊNCIA DE DADOS E INTELIGÊNCIA ARTIFICIAL": "CN E IA",
+      "CIÊNCIAS ECONÔMICAS": "ECO",
+      "ENGENHARIA DE COMPUTAÇÃO": "ENG COMP",
+      "ENGENHARIA DE PRODUÇÃO": "ENG PROD",
+      "ENGENHARIA DE SOFTWARE": "ENG SOFT"
+    },
+    "dias": [
+      "SEGUNDA",
+      "TERÇA",
+      "QUARTA",
+      "QUINTA",
+      "SEXTA",
+      "SÁBADO",
+      "DOMINGO"
+    ],
+    "diasFull": {
+      "SEGUNDA": "Segunda-feira",
+      "TERÇA": "Terça-feira",
+      "QUARTA": "Quarta-feira",
+      "QUINTA": "Quinta-feira",
+      "SEXTA": "Sexta-feira",
+      "SÁBADO": "Sábado",
+      "DOMINGO": "Domingo"
+    },
+    "diasLabel": {
+      "SEGUNDA": "Seg",
+      "TERÇA": "Ter",
+      "QUARTA": "Qua",
+      "QUINTA": "Qui",
+      "SEXTA": "Sex",
+      "SÁBADO": "Sáb",
+      "DOMINGO": "Dom"
+    }
+  },
+  "components": {
+    "Icon": {
+      "icons": [
+        "Menu",
+        "Home",
+        "Grid",
+        "Calendar",
+        "FileText",
+        "Upload",
+        "XCircle",
+        "Users",
+        "BarChart2",
+        "Settings",
+        "LogOut",
+        "Search",
+        "Trash2",
+        "Edit2",
+        "CheckCircle",
+        "AlertCircle",
+        "Plus",
+        "Clock",
+        "Info",
+        "ChevronDown",
+        "Eye",
+        "Download",
+        "X"
+      ]
+    },
+    "LoginPage": {
+      "title": "ibmec",
+      "subtitle": "Gestão de Salas",
+      "description": "Faça login com sua conta institucional do Google para acessar o sistema.",
+      "features": [
+        "Visualização em tempo real",
+        "Grade completa de horários",
+        "Gestão de eventos",
+        "Relatórios detalhados"
+      ]
+    },
+    "Sidebar": {
+      "logo": "ibmec",
+      "userMenuItems": [
+        {
+          "id": "dashboard",
+          "label": "Dashboard",
+          "icon": "Home"
+        },
+        {
+          "id": "salas",
+          "label": "Salas Hoje",
+          "icon": "Grid"
+        },
+        {
+          "id": "grade",
+          "label": "Grade Semanal",
+          "icon": "Calendar"
+        },
+        {
+          "id": "eventos",
+          "label": "Eventos",
+          "icon": "Calendar"
+        },
+        {
+          "id": "configuracoes",
+          "label": "Configurações",
+          "icon": "Settings"
+        }
+      ],
+      "adminMenuItems": [
+        {
+          "id": "planilhas",
+          "label": "Planilhas",
+          "icon": "Upload"
+        },
+        {
+          "id": "cancelamentos",
+          "label": "Cancelamentos",
+          "icon": "XCircle"
+        },
+        {
+          "id": "usuarios",
+          "label": "Usuários",
+          "icon": "Users"
+        },
+        {
+          "id": "relatorios",
+          "label": "Relatórios",
+          "icon": "BarChart2"
+        }
+      ]
+    },
+    "Dashboard": {
+      "sections": [
+        {
+          "id": "stats",
+          "title": "Estatísticas",
+          "stats": [
+            {
+              "label": "Aulas Hoje",
+              "icon": "Calendar"
+            },
+            {
+              "label": "Salas em Uso",
+              "icon": "Grid"
+            },
+            {
+              "label": "Eventos Pendentes",
+              "icon": "Clock"
+            },
+            {
+              "label": "Total de Salas",
+              "icon": "Grid"
+            }
+          ]
+        },
+        {
+          "id": "aulasAoVivo",
+          "title": "Aulas Ao Vivo Agora"
+        },
+        {
+          "id": "proximas",
+          "title": "Próximas Aulas"
+        },
+        {
+          "id": "eventos",
+          "title": "Próximos Eventos"
+        }
+      ]
+    },
+    "SalasHoje": {
+      "title": "Salas - Hoje",
+      "description": "Visualização em tempo real das salas ocupadas e disponíveis"
+    },
+    "GradeSemanal": {
+      "title": "Grade Semanal Completa",
+      "description": "Visão completa da grade de horários para todas as salas",
+      "dias": [
+        "SEGUNDA",
+        "TERÇA",
+        "QUARTA",
+        "QUINTA",
+        "SEXTA",
+        "SÁBADO"
+      ]
+    },
+    "Eventos": {
+      "title": "Eventos",
+      "description": "Gerenciamento de eventos e reservas especiais de salas",
+      "actions": [
+        "addEvento",
+        "editEvento",
+        "deleteEvento"
+      ]
+    },
+    "Planilhas": {
+      "title": "Importar Planilhas",
+      "description": "Faça upload das planilhas de alocação de salas e eventos",
+      "uploadTypes": [
+        {
+          "id": "alocacao",
+          "label": "Planilha de Alocação",
+          "description": "Excel com colunas: DIA DA SEMANA, HORÁRIO, SALA, DISCIPLINA, PROFESSOR, CURSO, PERÍODO, TURMA, GRUPO, CAPACIDADE"
+        },
+        {
+          "id": "eventos",
+          "label": "Planilha de Eventos",
+          "description": "Excel com colunas: Nome do Evento, Data, Dia da Semana, Sala, Horário Inicio, Horario Termino, Responsável Reserva, Observações"
+        }
+      ]
+    },
+    "CancelamentosAdmin": {
+      "title": "Gerenciar Cancelamentos",
+      "description": "Adicione, edite ou remova cancelamentos de aulas",
+      "actions": [
+        "addCancelamento",
+        "editCancelamento",
+        "deleteCancelamento"
+      ],
+      "types": [
+        {
+          "value": "cancelado",
+          "label": "Cancelado (temporário)"
+        },
+        {
+          "value": "cancelado-definitivo",
+          "label": "Cancelado Definitivamente"
+        }
+      ]
+    },
+    "Usuarios": {
+      "title": "Gerenciar Usuários",
+      "description": "Adicione e gerencie permissões de usuários",
+      "roles": [
+        {
+          "value": "user",
+          "label": "Usuário"
+        },
+        {
+          "value": "sub-admin",
+          "label": "Sub-Admin"
+        },
+        {
+          "value": "admin",
+          "label": "Admin"
+        }
+      ]
+    },
+    "Relatorios": {
+      "title": "Relatórios",
+      "description": "Estatísticas e relatórios do sistema",
+      "stats": [
+        {
+          "id": "totalAulas",
+          "label": "Total de Aulas"
+        },
+        {
+          "id": "totalSalas",
+          "label": "Total de Salas"
+        },
+        {
+          "id": "totalEventos",
+          "label": "Total de Eventos"
+        },
+        {
+          "id": "totalCancelamentos",
+          "label": "Cancelamentos"
+        }
+      ],
+      "charts": [
+        {
+          "id": "aulasPorDia",
+          "title": "Aulas por Dia da Semana",
+          "type": "bar"
+        },
+        {
+          "id": "aulasPorSala",
+          "title": "Top 10 Salas Mais Usadas",
+          "type": "bar"
+        },
+        {
+          "id": "aulasPorCurso",
+          "title": "Aulas por Curso",
+          "type": "bar"
+        }
+      ]
+    },
+    "Configuracoes": {
+      "title": "Configurações",
+      "description": "Configurações da sua conta",
+      "sections": [
+        {
+          "id": "perfil",
+          "title": "Perfil",
+          "fields": [
+            "email",
+            "role"
+          ]
+        }
+      ]
+    },
+    "TotemView": {
+      "title": "Salas em Tempo Real",
+      "description": "Modo Totem - Visualização pública das salas",
+      "refreshInterval": 30000,
+      "urlParam": "modo=totem"
+    }
+  },
+  "modals": [
+    {
+      "id": "ModalEvento",
+      "title": "Adicionar Evento",
+      "fields": [
+        {
+          "name": "nome",
+          "label": "Nome do Evento",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "data",
+          "label": "Data",
+          "type": "date",
+          "required": true
+        },
+        {
+          "name": "dia_semana",
+          "label": "Dia da Semana",
+          "type": "select",
+          "options": [
+            "SEGUNDA",
+            "TERÇA",
+            "QUARTA",
+            "QUINTA",
+            "SEXTA",
+            "SÁBADO",
+            "DOMINGO"
+          ],
+          "required": true
+        },
+        {
+          "name": "sala",
+          "label": "Sala",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "horario_inicio",
+          "label": "Horário Início",
+          "type": "time",
+          "required": true
+        },
+        {
+          "name": "horario_termino",
+          "label": "Horário Término",
+          "type": "time",
+          "required": true
+        },
+        {
+          "name": "responsavel",
+          "label": "Responsável",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "observacoes",
+          "label": "Observações",
+          "type": "textarea",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "ModalCancelamento",
+      "title": "Adicionar Cancelamento",
+      "fields": [
+        {
+          "name": "dia_semana",
+          "label": "Dia da Semana",
+          "type": "select",
+          "options": [
+            "SEGUNDA",
+            "TERÇA",
+            "QUARTA",
+            "QUINTA",
+            "SEXTA",
+            "SÁBADO",
+            "DOMINGO"
+          ],
+          "required": true
+        },
+        {
+          "name": "horario",
+          "label": "Horário",
+          "type": "text",
+          "placeholder": "Ex: 08:00-10:00",
+          "required": true
+        },
+        {
+          "name": "sala",
+          "label": "Sala",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "tipo",
+          "label": "Tipo",
+          "type": "select",
+          "options": [
+            {
+              "value": "cancelado",
+              "label": "Cancelado (temporário)"
+            },
+            {
+              "value": "cancelado-definitivo",
+              "label": "Cancelado Definitivamente"
+            }
+          ],
+          "required": true
+        },
+        {
+          "name": "motivo",
+          "label": "Motivo",
+          "type": "textarea",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "ModalUsuario",
+      "title": "Adicionar Usuário",
+      "fields": [
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "name": "role",
+          "label": "Permissão",
+          "type": "select",
+          "options": [
+            {
+              "value": "user",
+              "label": "Usuário"
+            },
+            {
+              "value": "sub-admin",
+              "label": "Sub-Admin"
+            },
+            {
+              "value": "admin",
+              "label": "Admin"
+            }
+          ],
+          "required": true
+        }
+      ]
+    }
+  ],
+  "database": {
+    "tables": [
+      {
+        "name": "alocacao",
+        "columns": [
+          "id",
+          "dia_semana",
+          "horario",
+          "sala",
+          "disciplina",
+          "professor",
+          "curso",
+          "periodo",
+          "turma",
+          "grupo",
+          "capacidade",
+          "raw",
+          "created_at"
+        ]
+      },
+      {
+        "name": "eventos",
+        "columns": [
+          "id",
+          "nome",
+          "data",
+          "dia_semana",
+          "sala",
+          "horario_inicio",
+          "horario_termino",
+          "responsavel",
+          "observacoes",
+          "created_at"
+        ]
+      },
+      {
+        "name": "cancelamentos",
+        "columns": [
+          "id",
+          "dia_semana",
+          "horario",
+          "sala",
+          "tipo",
+          "motivo",
+          "created_at"
+        ]
+      },
+      {
+        "name": "user_profiles",
+        "columns": [
+          "id",
+          "email",
+          "role",
+          "created_at"
+        ]
+      }
+    ]
+  },
+  "features": {
+    "authentication": {
+      "provider": "Supabase Auth",
+      "method": "Google OAuth"
+    },
+    "realTime": {
+      "enabled": true,
+      "updateInterval": 3600000,
+      "features": [
+        "live classroom status",
+        "automatic day detection",
+        "current time tracking"
+      ]
+    },
+    "fileUpload": {
+      "supportedFormats": [
+        "xlsx",
+        "xls"
+      ],
+      "types": [
+        "alocacao",
+        "eventos"
+      ]
+    },
+    "totemMode": {
+      "enabled": true,
+      "publicAccess": true,
+      "fullscreen": true,
+      "autoRefresh": true
+    },
+    "reports": {
+      "types": [
+        "statistics",
+        "charts",
+        "occupancy analysis"
+      ]
+    },
+    "roleBasedAccess": {
+      "roles": [
+        {
+          "name": "user",
+          "permissions": [
+            "view_dashboard",
+            "view_classrooms",
+            "view_schedule",
+            "view_events"
+          ]
+        },
+        {
+          "name": "sub-admin",
+          "permissions": [
+            "all_user_permissions",
+            "manage_cancellations",
+            "upload_spreadsheets"
+          ]
+        },
+        {
+          "name": "admin",
+          "permissions": [
+            "all_permissions",
+            "manage_users",
+            "view_reports",
+            "system_configuration"
+          ]
+        }
+      ]
+    }
+  },
+  "styling": {
+    "buttons": [
+      "btn-primary",
+      "btn-gold",
+      "btn-ghost",
+      "btn-danger",
+      "btn-success",
+      "btn-sm"
+    ],
+    "badges": [
+      "badge-navy",
+      "badge-gold",
+      "badge-success",
+      "badge-danger",
+      "badge-warning",
+      "badge-gray",
+      "badge-info"
+    ],
+    "cards": [
+      "card",
+      "sala-card",
+      "stat-box",
+      "totem-sala-card"
+    ],
+    "responsive": {
+      "breakpoints": {
+        "mobile": "768px"
+      },
+      "mobileAdjustments": [
+        "sidebar collapse",
+        "single column grid",
+        "reduced modal padding"
+      ]
+    }
+  },
+  "routes": {
+    "main": [
+      {
+        "path": "dashboard",
+        "component": "Dashboard",
+        "access": "all"
+      },
+      {
+        "path": "salas",
+        "component": "SalasHoje",
+        "access": "all"
+      },
+      {
+        "path": "grade",
+        "component": "GradeSemanal",
+        "access": "all"
+      },
+      {
+        "path": "eventos",
+        "component": "Eventos",
+        "access": "all"
+      },
+      {
+        "path": "configuracoes",
+        "component": "Configuracoes",
+        "access": "all"
+      }
+    ],
+    "admin": [
+      {
+        "path": "planilhas",
+        "component": "Planilhas",
+        "access": "admin"
+      },
+      {
+        "path": "cancelamentos",
+        "component": "CancelamentosAdmin",
+        "access": "admin"
+      },
+      {
+        "path": "usuarios",
+        "component": "Usuarios",
+        "access": "admin"
+      },
+      {
+        "path": "relatorios",
+        "component": "Relatorios",
+        "access": "admin"
+      }
+    ],
+    "public": [
+      {
+        "path": "?modo=totem",
+        "component": "TotemView",
+        "access": "public"
+      }
+    ]
+  }
+}
